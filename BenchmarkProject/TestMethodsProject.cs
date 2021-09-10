@@ -11,7 +11,7 @@ namespace BenchmarkProject
     [RankColumn]
     public class TestMethodsProject
     {
-        private static double[] array = new double[500000];
+        private static double[] array = new double[500_000];
 
         public TestMethodsProject()
         {
@@ -22,17 +22,17 @@ namespace BenchmarkProject
             }
         }
 
-        //[Benchmark]
-        //public void ArraySortTest()
-        //{
-        //    //Array.Sort(array);
-        //}
+        [Benchmark]
+        public void ArraySortTest()
+        {
+            //Array.Sort(array);
+        }
 
-        //[Benchmark]
-        //public void SortInsertWithSwapTest()
-        //{
-        //    _ = SortInsertWithSwap(array);
-        //}
+        [Benchmark]
+        public void SortInsertWithSwapTest()
+        {
+            _ = SortInsertWithSwap(array);
+        }
 
         [Benchmark]
         public void SortInsertNoSwapTest()
@@ -40,12 +40,17 @@ namespace BenchmarkProject
             var test = SortInsertNoSwap(array);
         }
 
-        //[Benchmark]
-        //public void BubleSortTest()
-        //{
-        //    _ = BubleSort(array);
-        //}
+        [Benchmark]
+        public void BubleSortTest()
+        {
+            _ = BubleSort(array);
+        }
 
+        /// <summary>
+        /// Сортировка пузырьком
+        /// </summary>
+        /// <param name="array">Массив для сортировки</param>
+        /// <returns>Отсортированный массив</returns>
         public static double[] BubleSort(double[] array)
         {
             for (int i = 0; i < array.Length; i++)
@@ -63,6 +68,11 @@ namespace BenchmarkProject
             return array;
         }
 
+        /// <summary>
+        /// Сортировка вставками с методом Swap()
+        /// </summary>
+        /// <param name="array">Массив для сортировки</param>
+        /// <returns>Отсортированный массив</returns>
         public static double[] SortInsertWithSwap(double[] array)
         {
             for (int i = 1; i < array.Length; i++)
@@ -83,6 +93,11 @@ namespace BenchmarkProject
             var s = array.OrderBy(item => item).ToArray();
         }
 
+        /// <summary>
+        /// Сортировка вставками без методом Swap()
+        /// </summary>
+        /// <param name="array">Массив для сортировки</param>
+        /// <returns>Отсортированный массив</returns>
         public static double[] SortInsertNoSwap(double[] array)
         {
             for (int i = 1; i < array.Length; i++)
@@ -99,6 +114,11 @@ namespace BenchmarkProject
             return array;
         }
 
+        /// <summary>
+        /// Метод меняющий элементы местами
+        /// </summary>
+        /// <param name="item1"></param>
+        /// <param name="item2"></param>
         private static void Swap(ref double item1, ref double item2)
         {
             var temp = item1;
